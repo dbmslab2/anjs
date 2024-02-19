@@ -1,0 +1,28 @@
+<html ng-app="studentApp">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<body ng-controller="studentController">
+<h2>Student Details</h2>
+ Student Name:
+ <input type="text" ng-model="name">
+ CGPA:
+ <input type="number" ng-model="cgpa" ng-min="0" ng-max="10">
+ <button ng-click="addStudent()">Add Student</button>
+ <p>Total Students : {{students.length}}</p>
+ <ul>
+    <li ng-repeat="student in students">
+    {{student.name}}-CGPA:{{student.cgpa}}
+    </li>
+ </ul>
+ <script>
+   var app=angular.module('studentApp',[]);
+   app.controller('studentController',function($scope){
+    $scope.students=[];
+     $scope.addStudent=function(){
+        $scope.students.push({name:$scope.name,cgpa:$scope.cgpa})
+        $scope.name='';
+        $scope.cgpa='';
+     };
+   });
+   </script>
+   </body>
+   </html>
